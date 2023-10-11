@@ -10,8 +10,13 @@ function on_cam_error(err){
 }
 //--------------
 var constraints = {audio: false, video:true};
-navigator.mediaDevices.getUserMedia(constraints).then(on_cam_succes)
+navigator.mediaDevices.getUserMedia(constraints)
+.then(on_cam_succes)
 .catch(on_cam_error);
+
+video.addEventListener("touchstart", capteaza);
+video.addEventListener("mousedown", capteaza);
+
 //--------------
 function capteaza(){
 var c = document.getElementById("canvas");
@@ -20,3 +25,4 @@ c.height = video.height;
 var ctx = c.getContext("2d");
 ctx.drawImage(video, 0, 0, 640, 480);
 }
+
